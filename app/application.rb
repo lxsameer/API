@@ -1,7 +1,7 @@
 require 'sinatra/base'
-require 'sinatra/asset_pipeline'
-require 'i18n'
-require 'i18n/backend/fallbacks'
+require 'sinatra/namespace'
+require 'sidekiq'
+require 'sidetiq'
 
 # Main Sinatra application class
 class RadioApp < Sinatra::Application
@@ -9,5 +9,11 @@ class RadioApp < Sinatra::Application
 
   enable :sessions
   enable :logging
+
+  namespace '/twitter' do
+    get '/status' do
+      'asdasd'
+    end
+  end
 
 end

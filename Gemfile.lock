@@ -1,40 +1,97 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.3.6)
+    backports (3.6.0)
+    buftok (0.2.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    connection_pool (2.0.0)
     daemons (1.1.9)
+    equalizer (0.0.9)
     eventmachine (1.0.3)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
+    http (0.6.1)
+      http_parser.rb (~> 0.6.0)
+    http_parser.rb (0.6.0)
+    ice_cube (0.12.1)
+    json (1.8.1)
     listen (2.7.9)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    memoizable (0.4.2)
+      thread_safe (~> 0.3, >= 0.3.1)
+    multi_json (1.10.1)
+    multipart-post (2.0.0)
+    naught (1.0.0)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
     rake (10.3.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    redis (3.1.0)
+    redis-namespace (1.5.0)
+      redis (~> 3.0, >= 3.0.4)
     rerun (0.10.0)
       listen (~> 2.7, >= 2.7.3)
+    sidekiq (3.2.0)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
+    sidetiq (0.6.1)
+      celluloid (>= 0.14.1)
+      ice_cube (~> 0.12.0)
+      sidekiq (>= 2.16.0)
+    simple_oauth (0.2.0)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
+    sinatra-contrib (1.4.2)
+      backports (>= 2.0)
+      multi_json
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.0)
+      tilt (~> 1.3)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
+    twitter (5.11.0)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      equalizer (~> 0.0.9)
+      faraday (~> 0.9.0)
+      http (~> 0.6.0)
+      http_parser.rb (~> 0.6.0)
+      json (~> 1.8)
+      memoizable (~> 0.4.0)
+      naught (~> 1.0)
+      simple_oauth (~> 0.2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   rake
+  redis
   rerun
+  sidekiq
+  sidetiq
   sinatra
+  sinatra-contrib
   thin
+  twitter
