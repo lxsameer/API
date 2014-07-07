@@ -3,7 +3,7 @@ class TwitterWorker
   include Sidetiq::Schedulable
 
   recurrence do
-    minutely(3)
+    minutely(1)
   end
 
   def perform

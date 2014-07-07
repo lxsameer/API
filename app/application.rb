@@ -3,6 +3,8 @@ require 'sinatra/namespace'
 require 'sidekiq'
 require 'sidetiq'
 
+require_relative './workers/twitter'
+
 # Main Sinatra application class
 class RadioApp < Sinatra::Application
   set :root, File.dirname(__FILE__)
