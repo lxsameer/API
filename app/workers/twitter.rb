@@ -1,3 +1,5 @@
+require 'twitter'
+
 class TwitterWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
@@ -7,6 +9,7 @@ class TwitterWorker
   end
 
   def perform
-    puts 'Doing hard work'
+    friends = Secrets.twitter.friends.take(20)
+    puts "FRIENDS: #{friends}"
   end
 end
