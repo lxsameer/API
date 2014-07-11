@@ -28,4 +28,4 @@ end
 
 xml_kudo_rank = xml.root.get_elements('/response/result/account/kudo_score/kudo_rank').first
 kudo_rank = xml_kudo_rank ? xml_kudo_rank.text.to_i : 1
-puts "kudo_rank:\t#{kudo_rank}"
+position = xml.root.get_elements('/response/result/account/kudo_score/position').first.text
