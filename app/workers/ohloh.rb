@@ -29,3 +29,9 @@ end
 xml_kudo_rank = xml.root.get_elements('/response/result/account/kudo_score/kudo_rank').first
 kudo_rank = xml_kudo_rank ? xml_kudo_rank.text.to_i : 1
 position = xml.root.get_elements('/response/result/account/kudo_score/position').first.text
+c = 0
+xml.root.get_elements('/response/result/account/languages/language/total_commits').each do |l|
+  c += l.text.to_i
+end
+
+puts "c<<>>>>>>>>>>>> #{c}"
