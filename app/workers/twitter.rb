@@ -1,3 +1,4 @@
+require 'json'
 require 'twitter'
 
 class TwitterWorker
@@ -10,11 +11,13 @@ class TwitterWorker
     redis = MyRedis.new
 
     me = Secrets.twitter.user('lxsameer')
-    redis.set 'twitter_tweets_count', me.tweets_count
-    redis.set 'twitter_friends', me.friends_count
-    redis.set 'twitter_followers', me.followers_count
-    redis.set 'twitter_latest_tweets', Secrets.twitter.user_timeline("lxsameer").each do |tweet|
+    ltweets = Secrets.twitter.user_timeline("lxsameer").each do |tweet|
     end
 
+    data = JSON.generate ({ tweets_count: me.tweets_count,
+                            friends: me.friends_count,
+                            followers: me.followers_count,
+                            latest_tweets: ltweets})
+    redis.set 'twitter', data
   end
 end
