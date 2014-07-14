@@ -4,19 +4,17 @@ class TwitterWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence do
-    minutely(1)
-  end
+  recurrence { minutely }
 
   def perform
-    me = Secrets.twitter.user('lxsameer')
-    tweets_count = me.tweets_count
-    friends = me.friends_count
-    followers = me.followers_count
-    latest_tweets = Secrets.twitter.user_timeline("lxsameer").each do |tweet|
+    redis = MyRedis.new
 
+    me = Secrets.twitter.user('lxsameer')
+    redis.set 'twitter_tweets_count', me.tweets_count
+    redis.set 'twitter_friends', me.friends_count
+    redis.set 'twitter_followers', me.followers_count
+    redis.set 'twitter_latest_tweets', Secrets.twitter.user_timeline("lxsameer").each do |tweet|
     end
 
-    puts "FRIENDS: #{friends}"
   end
 end

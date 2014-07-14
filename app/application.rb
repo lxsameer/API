@@ -4,8 +4,8 @@ require 'sidekiq'
 require 'sidetiq'
 
 require_relative './workers/twitter'
-
 require_relative './secrets'
+require_relative './lib/redis'
 
 # Main Sinatra application class
 class RadioApp < Sinatra::Application
