@@ -16,7 +16,8 @@ class RadioApp < Sinatra::Application
 
   namespace '/twitter' do
     get '/status' do
-      'asdasd'
+      redis = MyRedis.new
+      redis.get 'twitter_tweets_count'
     end
   end
 
