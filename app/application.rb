@@ -14,10 +14,16 @@ class RadioApp < Sinatra::Application
   enable :sessions
   enable :logging
 
+  configure do
+    mime_type :json, 'text/javascript'
+  end
+
   namespace '/twitter' do
     get '/status' do
+      content_type :json
+      callback = params[:callback]
       redis = MyRedis.new
-      redis.get 'twitter'
+      "#{callback}(#{redis.get 'twitter'})"
     end
   end
 
