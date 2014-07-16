@@ -5,6 +5,7 @@ require 'sidetiq'
 
 require_relative './workers/twitter'
 require_relative './secrets'
+require_relative './settings'
 require_relative './lib/redis'
 
 # Main Sinatra application class
