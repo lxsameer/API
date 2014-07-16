@@ -5,7 +5,7 @@ class TwitterWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { minutely(Settings.new.twitter['interval'].to_i || 5) }
+  recurrence { minutely(Settings.new.twitter['interval'].to_i) }
 
   def perform
     redis = MyRedis.new

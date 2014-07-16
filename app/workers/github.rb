@@ -4,7 +4,7 @@ class GithubWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { minutely(Settings.new.github['interval'].to_i || 5) }
+  recurrence { minutely(Settings.new.github['interval'].to_i) }
 
   def perform
     redis = MyRedis.new
@@ -15,7 +15,11 @@ class GithubWorker
 
     begin
       response = URI.parse("https://api.github.com/users/#{github_user}").read
+      contributes = URI.parse("https://api.github.com/users/#{github_user}/contributions_calendar_data").read
+      contributes = JSON.parse contributes
+
       redis.set 'github', response
+
     rescue OpenURI::HTTPError
       logger.error 'There is something wrong with github url.'
       logger.error 'please double check your configs'

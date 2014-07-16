@@ -14,6 +14,10 @@ class RadioApp < Sinatra::Application
   enable :sessions
   enable :logging
 
+  Sidetiq.configure do |config|
+    config.handler_pool_size = 1
+  end
+
   configure do
     mime_type :jsonp, 'text/javascript'
     mime_type :json, 'text/json'

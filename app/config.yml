@@ -1,8 +1,10 @@
 github:
   user: lxsameer
+  interval: 10
 
 twitter:
   user: lxsameer
+  interval: 10
 
 ohloh:
   user: lxsameer
