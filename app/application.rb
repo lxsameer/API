@@ -24,7 +24,7 @@ class APIApp < Sinatra::Application
   end
 
 
-  ['github', 'twitter'].each do |service|
+  ['ohloh', 'github', 'twitter'].each do |service|
 
     require_relative "./workers/#{service}"
 
