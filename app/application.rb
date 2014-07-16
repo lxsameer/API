@@ -17,16 +17,40 @@ class RadioApp < Sinatra::Application
   enable :logging
 
   configure do
-    mime_type :json, 'text/javascript'
+    mime_type :jsonp, 'text/javascript'
+    mime_type :json, 'text/json'
+
   end
 
   namespace '/twitter' do
     get '/status' do
-      content_type :json
       callback = params[:callback]
       redis = MyRedis.new
-      "#{callback}(#{redis.get 'twitter'})"
+
+      if callback.nil?
+        content_type :json
+        redis.get 'twitter'
+      else
+        content_type :jsonp
+        "#{callback}(#{redis.get 'twitter'})"
+      end
     end
   end
 
+
+  namespace '/github' do
+    get '/status' do
+      callback = params[:callback]
+      redis = MyRedis.new
+
+      if callback.nil?
+        content_type :json
+        redis.get 'github'
+      else
+        content_type :jsonp
+        "#{callback}(#{redis.get 'github'})"
+      end
+
+    end
+  end
 end
