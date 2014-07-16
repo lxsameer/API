@@ -1,5 +1,4 @@
-require 'net/http'
-require "open-uri"
+require 'open-uri'
 
 class GithubWorker
   include Sidekiq::Worker
@@ -10,6 +9,9 @@ class GithubWorker
   def perform
     redis = MyRedis.new
     github_user = Settings.new.github['user']
+
+    logger.info "Github User: #{github_user}"
+    logger.info "URI: https://api.github.com/users/#{github_user}"
 
     begin
       response = URI.parse("https://api.github.com/users/#{github_user}").read
