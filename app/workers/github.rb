@@ -18,11 +18,21 @@ class GithubWorker
       contributes = URI.parse("https://api.github.com/users/#{github_user}/contributions_calendar_data").read
       contributes = JSON.parse contributes
 
-      redis.set 'github', response
+      commits = 0
+      contributes.each do |day|
+        commits += day[1]
+      end
 
-    rescue OpenURI::HTTPError
+      response = JSON.parse response
+      response["commits"] = commits
+      response["contribution_data"] = contributes
+
+      redis.set 'github', JSON.generate(response)
+
+    rescue OpenURI::HTTPError => err
       logger.error 'There is something wrong with github url.'
       logger.error 'please double check your configs'
+      logger.error "ERRSTRING: #{err}"
       redis.set 'github', '{}'
     end
   end
