@@ -11,9 +11,13 @@ class GithubWorker
     redis = MyRedis.new
     github_user = Settings.new.github['user']
 
-    response = URI.parse("https://api.github.com/users/#{github_user}").read
-
-    puts ">>>>>>>>>>>>>>>>>", response.status
-    redis.set 'github', response
+    begin
+      response = URI.parse("https://api.github.com/users/#{github_user}").read
+      redis.set 'github', response
+    rescue OpenURI::HTTPError
+      logger.error 'There is something wrong with github url.'
+      logger.error 'please double check your configs'
+      redis.set 'github', '{}'
+    end
   end
 end
