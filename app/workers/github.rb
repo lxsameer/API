@@ -15,7 +15,7 @@ class GithubWorker
 
     begin
       response = URI.parse("https://api.github.com/users/#{github_user}").read
-      contributes = URI.parse("https://api.github.com/users/#{github_user}/contributions_calendar_data").read
+      contributes = URI.parse("https://github.com/users/#{github_user}/contributions_calendar_data").read
       contributes = JSON.parse contributes
 
       commits = 0
