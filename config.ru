@@ -4,5 +4,6 @@ require 'bundler'
 Bundler.require
 
 require './app/application'
+require 'sidekiq/web'
 
-run RadioApp
+run Rack::URLMap.new('/' => APIApp, '/sidekiq' => Sidekiq::Web)

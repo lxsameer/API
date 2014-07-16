@@ -8,7 +8,7 @@ require_relative './settings'
 require_relative './lib/redis'
 
 # Main Sinatra application class
-class RadioApp < Sinatra::Application
+class APIApp < Sinatra::Application
   set :root, File.dirname(__FILE__)
 
   enable :sessions
