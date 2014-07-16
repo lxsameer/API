@@ -2,7 +2,7 @@ require 'yaml'
 
 class Settings
   def initialize
-    @data = YAML.load_file(File.expand_path(__FILE__, 'config.yml'))
+    @data = YAML.load_file(File.expand_path('config.yml', File.dirname(__FILE__)))
   end
 
   def method_missing(m, *args, &block)
@@ -10,3 +10,5 @@ class Settings
     super
   end
 end
+
+Settings.new

@@ -4,6 +4,7 @@ require 'sidekiq'
 require 'sidetiq'
 
 require_relative './workers/twitter'
+require_relative './workers/github'
 require_relative './secrets'
 require_relative './settings'
 require_relative './lib/redis'
