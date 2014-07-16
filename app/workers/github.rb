@@ -1,4 +1,5 @@
 require 'net/http'
+require "open-uri"
 
 class GithubWorker
   include Sidekiq::Worker
@@ -10,13 +11,10 @@ class GithubWorker
     redis = MyRedis.new
     github_user = Settings.new.github['user']
 
-    response = Net::HTTP.get_response('api.github.com', "/users/#{github_user}", 80)
+    response = URI.parse("https://api.github.com/users/#{github_user}xxxxxxxxxxxxxxxxxx")
 
-    if response.code != '200'
-      STDERR.puts "#{response.code} - #{response.message}"
-      return
-    end
+    puts ">>>>>>>>>>>>>>>>>> ", response.status
 
-    redis.set 'github', response.body
+    redis.set 'github', response.read
   end
 end
