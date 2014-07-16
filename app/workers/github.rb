@@ -4,7 +4,7 @@ class GithubWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { minutely }
+  recurrence { minutely(5) }
 
   def perform
     redis = MyRedis.new
