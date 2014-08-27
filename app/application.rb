@@ -1,4 +1,4 @@
-require 'sinatra/base'
+#require 'sinatra/base'
 require 'sinatra/namespace'
 
 require_relative './secrets'
