@@ -1,7 +1,5 @@
 require 'sinatra/base'
 require 'sinatra/namespace'
-require 'sidekiq'
-require 'sidetiq'
 
 require_relative './secrets'
 require_relative './settings'
@@ -24,9 +22,7 @@ class APIApp < Sinatra::Application
   end
 
 
-  ['ohloh', 'github', 'twitter'].each do |service|
-
-    require_relative "./workers/#{service}"
+  Settings.services.each do |service|
 
     namespace "/#{service}" do
       get '/status' do
