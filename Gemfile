@@ -9,3 +9,7 @@ gem 'redis'
 gem 'sidekiq'
 gem 'sinatra-contrib'
 gem 'sidetiq'
+
+group :development do
+  gem 'pry'
+end
