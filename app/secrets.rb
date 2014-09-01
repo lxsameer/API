@@ -9,11 +9,11 @@ class Secrets
   end
 
   def self.redis
-    if ENV.include? 'REDIS_PASS'
-      { host: 'localhost',
-        port: 6380,
+    if ENV.include? 'REDIS_PASSWORD'
+      { host: ENV['OPENSHIFT_REDIS_HOST'],
+        port: ENV['OPENSHIFT_REDIS_PORT'],
         db: 15,
-        password: ENV['REDIS_PASS']
+        password: ENV['REDIS_PASSWORD']
       }
     else
       {}
