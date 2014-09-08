@@ -24,10 +24,11 @@ class GithubWorker
       end
 
       response = JSON.parse response
-      response["commits"] = commits
-      response["contribution_data"] = contributes
+      response['commits'] = commits
+      response['contribution_data'] = contributes
 
       redis.set 'github', JSON.generate(response)
+      logger.info 'Value is set correctly'
 
     rescue OpenURI::HTTPError => err
       logger.error 'There is something wrong with github url.'
