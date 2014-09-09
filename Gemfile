@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'sinatra', :require => 'sinatra/base'
 gem 'rake'
 gem 'thin'
-gem 'rerun'
 gem 'twitter'
 gem 'redis'
 gem 'sidekiq', '3.2.2'
@@ -12,4 +11,5 @@ gem 'sidetiq'
 
 group :development do
   gem 'pry'
+  gem 'rerun'
 end
