@@ -9,7 +9,7 @@ class TwitterWorker
 
   def perform
     redis = MyRedis.new
-
+    logger.info 'Twitter task started'
     me = Secrets.twitter.user('lxsameer')
     ltweets = Secrets.twitter.user_timeline("lxsameer").each do |tweet|
     end
@@ -19,5 +19,6 @@ class TwitterWorker
                             followers: me.followers_count,
                             latest_tweets: ltweets})
     redis.set 'twitter', data
+    logger.info 'Twitter task done'
   end
 end
