@@ -6,7 +6,7 @@ gem 'thin'
 gem 'rerun'
 gem 'twitter'
 gem 'redis'
-gem 'sidekiq'
+gem 'sidekiq', '3.2.2'
 gem 'sinatra-contrib'
 gem 'sidetiq'
 

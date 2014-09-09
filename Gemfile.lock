@@ -97,7 +97,7 @@ DEPENDENCIES
   rake
   redis
   rerun
-  sidekiq
+  sidekiq (= 3.2.2)
   sidetiq
   sinatra
   sinatra-contrib
