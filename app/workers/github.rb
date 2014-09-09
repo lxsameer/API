@@ -15,17 +15,17 @@ class GithubWorker
 
     begin
       response = URI.parse("https://api.github.com/users/#{github_user}").read
-      contributes = URI.parse("https://github.com/users/#{github_user}/contributions_calendar_data").read
-      contributes = JSON.parse contributes
+      #contributes = URI.parse("https://github.com/users/#{github_user}/contributions_calendar_data").read
+      #contributes = JSON.parse contributes
 
       commits = 0
-      contributes.each do |day|
-        commits += day[1]
-      end
+      #contributes.each do |day|
+        #commits += day[1]
+      #end
 
       response = JSON.parse response
-      response['commits'] = commits
-      response['contribution_data'] = contributes
+      response['commits'] = '-'
+      response['contribution_data'] = []
 
       redis.set 'github', JSON.generate(response)
       logger.info 'Value is set correctly'

@@ -12,8 +12,8 @@ class OhlohWorker
 
     api_key = Secrets.ohloh_key
     ohloh_user = Settings.new.ohloh['user']
-    response = Net::HTTP.get_response('www.ohloh.net', "/accounts/#{ohloh_user}.xml?v=1&api_key=#{api_key}", 80)
-
+    response = Net::HTTP.get_response('www.openhub.net', "/accounts/#{ohloh_user}.xml?v=1&api_key=#{api_key}", 80)
+    logger.info "/accounts/#{ohloh_user}.xml?v=1&api_key=#{api_key}"
     if response.code != '200'
       logger.error "[OHLOH] #{response.code} - #{response.message}"
       return
